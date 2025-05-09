@@ -216,3 +216,55 @@ No strong solution for this yet, but you can do the following things
 rm -r /root/.aztec/alpha-testnet
 ```
 * Re-run the node using run command.
+
+
+
+
+# Aztec Node Update
+Follow thai steps to update your node to avoid missing attestations or block proposals.
+
+Step 1: reattach your screen 
+
+Step 2: Stop your validator and delete your old database
+
+
+```bash
+rm -r /root/.aztec/alpha-testnet
+```
+Step 3: Update your software
+
+```bash
+aztec-up alpha-testnet
+```
+The new image is “aztecprotocol/aztec:0.85.0-alpha-testnet.8”
+
+Step 4: Restart your validator
+
+Bring your node online again using the commands as before.
+
+If you used a .env file to store details restart with this.
+
+```bash
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls "$ETHEREUM_HOSTS" \
+  --l1-consensus-host-urls "$L1_CONSENSUS_HOST_URLS" \
+  --sequencer.validatorPrivateKey "$SEQUENCER_VALIDATOR_PRIVATE_KEY" \
+  --sequencer.coinbase "$SEQUENCER_COINBASE" \
+  --p2p.p2pIp "$P2P_IP" \
+  --p2p.maxTxPoolSize 1000000000
+```
+If you used without .env restart with this.
+
+```bash
+aztec start --node --archiver --sequencer \
+  --network alpha-testnet \
+  --l1-rpc-urls "$ETHEREUM_HOSTS" \
+  --l1-consensus-host-urls "$L1_CONSENSUS_HOST_URLS" \
+  --sequencer.validatorPrivateKey "$SEQUENCER_VALIDATOR_PRIVATE_KEY" \
+  --sequencer.coinbase "$SEQUENCER_COINBASE" \
+  --p2p.p2pIp "$P2P_IP" \
+--p2p.maxTxPoolSize 1000000000
+```
+Done Lfg ✅
+
